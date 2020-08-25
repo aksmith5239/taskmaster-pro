@@ -43,7 +43,8 @@ var loadTasks = function() {
 
 var saveTasks = function() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
-};
+}; 
+
 //sortable jquery code
 $(".card .list-group").sortable({
   connectWith: $(".card .list-group"),
@@ -80,8 +81,9 @@ $(".card .list-group").sortable({
       tempArr.push({
         text: text, 
         date: date
-      });
+      }); 
     }); // children loop end
+    
     // trim down lists id to match object property
     var arrName = $(this)
       .attr("id")
@@ -91,8 +93,24 @@ $(".card .list-group").sortable({
     tasks[arrName] = tempArr;
     saveTasks();  
     
-  }
+  } // tempArray push 
 }); // end save tasks function
+
+// droppable
+$("#trash").droppable({
+  accept: ".card .list-group-item",
+  tolerance: "touch",
+  drop: function(event, ui) {
+    ui.draggable.remove();
+    console.log("drop");
+  }, 
+  over: function(event, ui) {
+    console.log("over");
+  },
+  out: function(event, ui) {
+    console.log("out");
+  }
+}); // end droppable
 // paragraph to text box logic
 $(".list-group").on("click", "p", function() {
     var text = $(this)
