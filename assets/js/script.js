@@ -52,7 +52,7 @@ var auditTask = function(taskEl) {
   $(taskEl).removeClass("list-group-item-warning list-group-item-danger");
   //apply new class if task is near/over due date
   if (moment().isAfter(time)) {
-    $(taskEl).addClass("list-group-tem-danger");
+    $(taskEl).addClass("list-group-item-danger");
   } else if (Math.abs(moment().diff(time, "days")) <= 2) {
     $(taskEl).addClass("list-group-item-warning");
   }
